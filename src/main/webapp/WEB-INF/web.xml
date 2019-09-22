@@ -3,5 +3,109 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Insurance test</display-name>
+  
+ 
+    <servlet>
+	  <servlet-name>ClientCreator</servlet-name>
+        <servlet-class>kolotilko.e.insurance_test.api.ClientCreator</servlet-class>
+    </servlet>
+    <servlet>
+	  <servlet-name>ClientChanger</servlet-name>
+        <servlet-class>kolotilko.e.insurance_test.api.ClientChanger</servlet-class>
+    </servlet>
+    <servlet>
+	  <servlet-name>ClientSearcher</servlet-name>
+        <servlet-class>kolotilko.e.insurance_test.api.ClientSearcher</servlet-class>
+    </servlet>    
+    <servlet>
+	  <servlet-name>ContractCreator</servlet-name>
+        <servlet-class>kolotilko.e.insurance_test.api.ContractCreator</servlet-class>
+    </servlet>
+    <servlet>
+	  <servlet-name>ContractShortLister</servlet-name>
+        <servlet-class>kolotilko.e.insurance_test.api.ContractShortLister</servlet-class>
+    </servlet>
+    <servlet>
+	  <servlet-name>AwardCalculatorController</servlet-name>
+        <servlet-class>kolotilko.e.insurance_test.api.AwardCalculatorController</servlet-class>
+    </servlet>
+    <servlet>
+	  <servlet-name>PropertyTypeTeller</servlet-name>
+        <servlet-class>kolotilko.e.insurance_test.api.PropertyTypeTeller</servlet-class>
+    </servlet>
+    
+    
+     <!--
+     * in: JSON with full client info (see client constructor)
+     * out: {"error":-1, id:...} if OK, else {"error": "Error message..."} 
+   -->
+    <servlet-mapping>
+        <servlet-name>ClientCreator</servlet-name>
+        <url-pattern>/api/createClient</url-pattern>
+    </servlet-mapping>          
+    <!--
+    Try to change data on client
+     * in: JSON with full client info (see client constructor) + "id":... (because we CHANGE!)     
+    patr, passSeries, passNum  is optional
+     * out: {"error":-1} if OK, else {"error": "Error message..."} 
+     -->
+    <servlet-mapping>
+        <servlet-name>ClientChanger</servlet-name>
+        <url-pattern>/api/changeClient</url-pattern>
+    </servlet-mapping> 
+    
+    <!--
+   Try to get data based on some (or no) info 
+    * in: {"surname":"...", "name":"...", "patr":"..."}
+    surname, name, patr - optional
+    * out {"error":-1, "clients":[{client1_data},{client2_data},...] }
+    client1_data:
+    { "surname":"...", "name":"...", "patr":"...", "DoB":long, "passSeries":"...", "passNum":"..."}
+     -->
+    <servlet-mapping>
+        <servlet-name>ClientSearcher</servlet-name>
+        <url-pattern>/api/lookForClient</url-pattern>
+    </servlet-mapping>    
+    
+    <!--
+    Try to create a contract
+     * in: {"client":{}, "contract":{}}
+     * client - full client info + id (to check)
+     * out: {"error":-1} if OK, else {"error": "Error message..."} 
+     -->
+    <servlet-mapping>
+        <servlet-name>ContractCreator</servlet-name>
+        <url-pattern>/api/createContract</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!--
+     * shortContracts = {"contractNumber" : ..., "contractDate":..., 
+     *      "FIO":"...", "award":..., "activeFrom":"...", "activeTo":...}
+     *      activeFrom, activeTo - check for presence
+     -->
+    <servlet-mapping>
+        <servlet-name>ContractShortLister</servlet-name>
+        <url-pattern>/api/getListOfShortContracts</url-pattern>
+    </servlet-mapping>
+    
+     <!--
+     * out: {"error":-1, shortContracts:[{},{},{}] }
+     * activePeriod = "dd.mm.yyyy-dd.mm.yyyy" 
+     -->
+    <servlet-mapping>
+        <servlet-name>AwardCalculatorController</servlet-name>
+        <url-pattern>/api/calculateAward</url-pattern>
+    </servlet-mapping>
+        
+     <!--     
+     * in: { "insuranceAmount":..., "days":..., "propertyType":"...", "builtYear":..., "area":... }
+     * out: {"error":-1, "award":... } if OK or {"error":"..." } 
+     -->
+    <servlet-mapping>
+        <servlet-name>PropertyTypeTeller</servlet-name>
+        <url-pattern>/api/getPropertyTypes</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

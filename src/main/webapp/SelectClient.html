@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Выбор клиентов</title>
+  <link rel="stylesheet" type="text/css" href="./css/CreateClient.css">
+  <link rel="stylesheet" type="text/css" href="./css/SelectClient.css">
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+<body>
+
+<div class="inline_cluster">ФИО</div>
+<div class="inline_cluster"><input type="text" id="surname_input"/><br/>(фамилия)</div> 
+<div class="inline_cluster"><input type="text" id="name_input"/><br/>(имя)</div>
+<div class="inline_cluster"><input type="text" id="patr_input"/><br/>(отчество)</div>
+<div class="inline_cluster"><input type="image" id="img_btn" src="./img/magnifier.png"></div>
+<br class="clearBoth"/>
+<table id="client_table">
+ <thead>
+  <tr>
+    <td>ФИО</td><td>Дата рождения</td><td>Паспортные данные</td>    
+  </tr>
+ </thead>
+ <tfoot id="client_table_tfoot">
+ </tfoot>
+</table>
+<br/>
+<button id="select_btn">Выбрать</button>
+<button id="new_btn">Новый</button>
+<button id="cancel_btn">Закрыть</button>
+
+
+<script type="text/javascript" src="./js/SelectClient.js"></script>
+<noscript>Enable JavaScript for proper page use</noscript>
+</body>
+</html>

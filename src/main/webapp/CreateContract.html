@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Оформление договора</title>
+  <link rel="stylesheet" type="text/css" href="./css/CreateContract.css">
+  <link rel="stylesheet" type="text/css" href="./css/CreateClient.css">
+</head>
+<body>
+<datalist id="propertyTypesDatalist">
+<!--
+    <option value="Квартира"></option>
+    <option value="Дом"></option>
+    <option value="Комната"></option>
+-->
+</datalist>
+<script type="text/javascript" src="js/CreateContractPropExtr.js"></script>
+
+<form>
+<fieldset>
+<legend class="blueLegend">Расчет</legend>
+  <span>Страховая сумма</span><input type="number" class="contractData" name="insuranceAmount" min="0" required id="insuranceAmount_contractInput">
+  <span>Срок действия</span><span>с</span><input type="date" class="contractData" name="activeFrom" required id="dateFrom_contractInput" >
+  <span>по</span><input type="date" class="contractData" name="activeTo" required id="dateTo_contractInput">
+  <br/>  
+  <span>Тип недвижимости</span><input list="propertyTypesDatalist" class="contractData" name="propertyTypeString" required id="propertyType_contractInput">
+  <br/>
+  <span>Год постройки</span><input type="number" class="contractData" name="year" required min="0" max="9999" id="year_contractInput">
+  <br/>
+  <span>Площадь, кв.м.</span><input type="text" class="contractData" name="area" required id="area_contractInput">
+  <br/>
+  <button id="calculate_btn" type="button">Рассчитать</button>
+  <br/>
+  <div>
+    <span>Дата расчета</span><input type="date" class="contractData" name="awardCountDate" required readonly id="awardCountDate_contractInput">
+    <span>Премия</span><input type="text" class="contractData" name="award" required id="award_contractInput">
+  </div>  
+</fieldset>
+  <br/>
+  <span>№ договора</span><input type="number" class="contractData" name="contractNumber" required id="contractNumber_contractInput">
+  <span>Дата заключения</span><input type="date" class="contractData" name="contractDate" required readonly id="contractDate_contractInput">
+  <br/>
+  
+  
+  <h3>СТРАХОВАТЕЛЬ</h3>
+  <button id="selectClient_btn" type="button">Выбрать</button><span>ФИО</span>
+  <input type="text" required id="clientFIO_clientInput" readonly>
+  <button id="changeClient_btn" type="button">Изменить</button>
+  <br/>
+  
+  <span>Дата рождения</span><input type="date" class="clientData" name="DoB" required id="DoB_clientInput">
+  <span>Паспорт</span>
+  <span>серия</span><input type="text" class="clientData" name="passSeries" required id="passSeries_clientInput">
+  <span>№</span><input type="text" class="clientData" name="passNum" required id="passNum_clientInput">
+  <br/>
+  
+  
+  <h3>Адрес недвижимости</h3>  
+  <div class="container">
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="country" required id="country_contractInput"/>
+      <br/>государство
+    </div>  
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="index" id="index_contractInput"/>
+      <br/>индекс
+    </div>  
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="region" required id="region_contractInput"/>
+      <br/>республика, край, область
+    </div>  
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="district" id="district_contractInput"/>
+      <br/>район
+    </div>
+  </div>
+  <br class="clearBoth"/>  
+  <div class="container">
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="locality" required id="locality_contractInput"/>
+      <br/>населенный пункт
+    </div>  
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="street" required id="street_contractInput"/>
+      <br/>улица
+    </div>  
+    <div class="inline_cluster">
+      <input type="number" class="contractData" name="houseNumber" id="houseNumber_contractInput"/>
+      <br/>дом
+    </div>  
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="building" id="building_contractInput"/>
+      <br/>корпус
+    </div>  
+    <div class="inline_cluster">
+      <input type="text" class="contractData" name="structure" id="structure_contractInput"/>
+      <br/>строение
+    </div>  
+    <div class="inline_cluster">
+      <input type="number" class="contractData" name="room" required id="room_contractInput"/>
+      <br/>квартира
+    </div>
+  </div>
+  <br class="clearBoth"/>
+  
+  
+  <h3>КОММЕНТАРИЙ</h3>
+  <div id="comment">
+    <span>Комментарий к договору (не печатается на полисе)</span>
+    <input type="text" class="contractData" name="comment" id="comment_contractInput"/>
+  </div>
+  <br/>
+</form>
+<div id="lastButtons" class="centerAlligned">
+<!--
+  <input type="submit" value="Сохранить">  
+-->
+  <button id="save_btn">Сохранить</button>
+  <button id="backToList_btn">К списку договоров</button>
+</div>
+
+<script type="text/javascript" src="js/CreateContractAssigner.js"></script>
+</body>
+</html>
