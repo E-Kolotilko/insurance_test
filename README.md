@@ -1,5 +1,5 @@
 # insurance_test
-A test of web application: very simple cliend <-> server <-> database  
+A test of web application: very simple client <-> server <-> database  
 No frontend frameworks.  
 Backend: JPA + Hibernate  
 Database: H2  
